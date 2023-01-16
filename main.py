@@ -30,7 +30,6 @@ for i in elements:
     for title, result in zip(temp1, temp2):
         dictemp[title] = result
     house_list.append(dictemp)
-#pprint.pprint(house_list)
 #jsonに保存している
 with open("data.json", "w") as f:
     json.dump(house_list, f, sort_keys=True, indent=4)
