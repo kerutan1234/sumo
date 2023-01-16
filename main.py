@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import pprint
 import json
+import pandas as pd
 
 url = "https://suumo.jp/jj/common/ichiran/JJ901FC004/?initFlg=1&seniFlg=1&ar=030&ta=14&scTmp=14132&ct=9999999&cb=0.0&kt=9999999&xt=9999999&et=9999999&cn=9999999&newflg=0&km=1&sc=14132&bs=040&pc=100"
 res = requests.get(url)
@@ -29,6 +30,12 @@ for i in elements:
     for title, result in zip(temp1, temp2):
         dictemp[title] = result
     house_list.append(dictemp)
-pprint.pprint(house_list)
+#pprint.pprint(house_list)
+#jsonに保存している
 with open("data.json", "w") as f:
-    json.dump(house_list, f, sort_keys=True, indent=4, ensure_ascii=False)
+    json.dump(house_list, f, sort_keys=True, indent=4)
+print(house_list)
+#保存したJSONをデータフレームにしている
+df=pd.read_json("data.json",encoding='utf-8')
+print(df)
+df.to_excel('output.xlsx')
