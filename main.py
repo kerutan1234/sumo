@@ -36,5 +36,5 @@ with open("data.json", "w") as f:
 print(house_list)
 #保存したJSONをデータフレームにしている
 df=pd.read_json("data.json",encoding='utf-8')
-print(df)
+#print(df)
 df.to_excel('output.xlsx')
