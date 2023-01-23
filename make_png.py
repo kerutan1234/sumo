@@ -5,21 +5,15 @@ import json
 import textwrap
 
 
-play_path = "C:/Users/newscorpion/Documents/work/sumo/drawing/100220872649.jpg"
-im1 = Image.open(play_path).copy()
+
 json_open = open('./data.json', 'r')
 json_load=json.load(json_open)
-#print(json_load)
 test_one=json_load[0]
 print(test_one)
-#icon_path = 'C:/Users/newscorpion/Documents/work/sumo/drawing/100301143101.jpg'
-#im2 = Image.open(icon_path).copy()
+bc_lists=json_load
 
 
 def get_concat_h_blank(im1, color=(255, 255, 255)):
-
-
-
     dst = Image.new('RGB', (im1.width + 300, max(im1.height, 300)), color)
     dst.paste(im1, (300, 0))
     draw = ImageDraw.Draw(dst)
@@ -61,11 +55,11 @@ def get_concat_v_blank(im1, im2, color=(0, 0, 0)):
     dst.paste(im1, (0, 0))
     dst.paste(im2, (0, im1.height))
     return dst
+for bc_list in bc_lists:
+    play_path = "C:/Users/newscorpion/Documents/work/sumo/drawing/"+bc_list["bcid"]+".jpg"
+    im1 = Image.open(play_path).copy()
+    get_concat_h_blank(im1).save('data/dst/'+bc_list["bcid"]+'.jpg')
 
-get_concat_h_blank(im1).save('data/dst/pillow_concat_h_blank.jpg')
-split_fee=test_one["価格（月額のローン支払い）"].split("円")
-print(split_fee)
-for i in split_fee:
-    print(i+"円")
 
 #get_concat_v_blank(im1, im2, (0, 64, 128)).save('data/dst/pillow_concat_v_blank.jpg')
+#VISON解像度　1920:1080
