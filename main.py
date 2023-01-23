@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import pprint
 import json
 import pandas as pd
+import urllib
 
 url = "https://suumo.jp/jj/common/ichiran/JJ901FC004/?initFlg=1&seniFlg=1&ar=030&ta=14&scTmp=14132&ct=9999999&cb=0.0&kt=9999999&xt=9999999&et=9999999&cn=9999999&newflg=0&km=1&sc=14132&bs=040&pc=100"
 res = requests.get(url)
@@ -29,7 +30,8 @@ for i in elements:
         temp2.append(ii)
     for title, result in zip(temp1, temp2):
         dictemp[title] = result
-    house_list.append({bcid:dictemp})
+    dictemp['bcid'] = bcid
+    house_list.append(dictemp)
 
 #jsonに保存している
 with open("data.json", "w") as f:
@@ -44,3 +46,17 @@ df.to_excel('output.xlsx')
 #間取り図
 #https://img01.suumo.com/front/gazo/fr/bukken/437/100291162437/100291162437_co.jpg
 #https://img01.suumo.com/front/gazo/fr/bukken/525/100311986525/100311986525_co.jpg"
+
+
+def download_file(url, dst_path):
+    try:
+        with urllib.request.urlopen(url) as web_file:
+            data = web_file.read()
+            with open(dst_path, mode='wb') as local_file:
+                local_file.write(data)
+    except urllib.error.URLError as e:
+        print(e)
+for i in house_list:
+    src="https://img01.suumo.com/front/gazo/fr/bukken/"+i["bcid"][-3:]+"/"+i["bcid"]+"/"+i["bcid"]+"_co.jpg"#ダブル掲載がある場合は、BCIDを流用している場合があるため、取得できないことがある。
+    print(src)
+    download_file(src, "./drawing/"+i["bcid"]+".jpg")
