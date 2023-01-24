@@ -60,7 +60,7 @@ def get_concat_h_blank(im1,bc_list, color=(255, 255, 255)):
     line_counter = 0
     split_madori=bc_list["間取り/面積/総戸数"].split("間取り")
     for line in split_madori:
-        y=line_counter*70+900#####################################高さの位置指定
+        y=line_counter*85+900#####################################高さの位置指定
         if line_counter==1:
             draw.multiline_text((10, y),"間取り"+line, fill=(0,0,0), font=font2)
         else:
