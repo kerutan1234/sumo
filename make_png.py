@@ -56,9 +56,9 @@ def get_concat_v_blank(im1, im2, color=(0, 0, 0)):
     dst.paste(im2, (0, im1.height))
     return dst
 for bc_list in bc_lists:
-    play_path = "C:/Users/newscorpion/Documents/work/sumo/drawing/"+bc_list["bcid"]+".jpg"
+    play_path = "./drawing/"+bc_list["bcid"]+".jpg"
     im1 = Image.open(play_path).copy()
-    get_concat_h_blank(im1).save('data/dst/'+bc_list["bcid"]+'.jpg')
+    get_concat_h_blank(im1).save('data/'+bc_list["bcid"]+'.jpg')
 
 
 #get_concat_v_blank(im1, im2, (0, 64, 128)).save('data/dst/pillow_concat_v_blank.jpg')
