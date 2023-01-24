@@ -31,7 +31,7 @@ def get_concat_h_blank(im1,bc_list, color=(255, 255, 255)):
     draw = ImageDraw.Draw(dst)
 ######################################描写文字設定
     font=ImageFont.truetype('C:/Windows/Fonts/msgothic.ttc', 120)
-    font2=ImageFont.truetype('C:/Windows/Fonts/msgothic.ttc', 70)
+    font2=ImageFont.truetype('C:/Windows/Fonts/msgothic.ttc', 85)
     font3=ImageFont.truetype('C:/Windows/Fonts/msgothic.ttc', 100)
 
     line_counter = 0
