@@ -46,7 +46,6 @@ def get_concat_h_blank(im1,bc_list, color=(255, 255, 255)):
     line_counter = 0
     split_fee=bc_list["価格（月額のローン支払い）"].split("円",1)#ここの,1をとると全部表示されるよ
     del split_fee[-1]
-    print(split_fee)
     for line in split_fee:
         y=line_counter*100+500###################################高さの位置指定
         draw.multiline_text((10, y),line+"円", fill=(0,0,0), font=font3)
