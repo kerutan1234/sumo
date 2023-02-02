@@ -13,8 +13,8 @@ def keepAspectResizeSimple(image,id):#imageオブジェクトを渡すこと
     resize_size = (round(ratio * image.width), round(ratio * image.height))
     # リサイズ後の画像サイズにリサイズ
     resized_image = image.resize(resize_size)
-    resized_image.save("./debug/"+id+"_resize.jpg")
-    resized_image.save("./drawing/resize/"+name)
+    #resized_image.save("./debug/"+id+"_resize.jpg")
+    resized_image.save("./download/resize/"+name)
     return resized_image
 if __name__ == '__main__':
     pass

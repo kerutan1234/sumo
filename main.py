@@ -60,4 +60,4 @@ def download_file(url, dst_path):
 for i in tqdm(house_list):
     src="https://img01.suumo.com/front/gazo/fr/bukken/"+i["bcid"][-3:]+"/"+i["bcid"]+"/"+i["bcid"]+"_co.jpg"#ダブル掲載がある場合は、BCIDを流用している場合があるため、取得できないことがある。
     #print(src)
-    download_file(src, "./drawing/"+i["bcid"]+".jpg")
+    download_file(src, "./download/"+i["bcid"]+".jpg")

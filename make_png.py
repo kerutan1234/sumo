@@ -65,7 +65,7 @@ def get_concat_h_blank(im1,bc_list, color=(255, 255, 255)):
         else:
             draw.multiline_text((10, y),line, fill=(0,0,0), font=font2)
         line_counter = line_counter +1  # 行数のカウンターに1
-    dst.save("./debug/"+bc_list["bcid"]+"_dst.jpg")
+    #dst.save("./debug/"+bc_list["bcid"]+"_dst.jpg")
     return dst
 
 def get_concat_v_blank(im1, im2, color=(0, 0, 0)):
@@ -74,10 +74,10 @@ def get_concat_v_blank(im1, im2, color=(0, 0, 0)):
     dst.paste(im2, (0, im1.height))
     return dst
 for bc_list in tqdm(bc_lists, leave=False):
-    play_path = "./drawing/"+bc_list["bcid"]+".jpg"
+    play_path = "./download/"+bc_list["bcid"]+".jpg"
     im1 = Image.open(play_path).copy()
-    get_concat_h_blank(im1,bc_list).save('data/'+bc_list["bcid"]+'.jpg')
+    get_concat_h_blank(im1,bc_list).save('output/'+bc_list["bcid"]+'.jpg')
 
 
-#get_concat_v_blank(im1, im2, (0, 64, 128)).save('data/dst/pillow_concat_v_blank.jpg')
+#get_concat_v_blank(im1, im2, (0, 64, 128)).save('output/dst/pillow_concat_v_blank.jpg')
 #VISON解像度　1920:1080
