@@ -6,6 +6,7 @@ import json
 import pandas as pd
 import urllib
 from tqdm import tqdm
+import hash
 
 url = "https://suumo.jp/jj/common/ichiran/JJ901FC004/?initFlg=1&seniFlg=1&ar=030&ta=14&scTmp=14132&ct=9999999&cb=0.0&kt=9999999&xt=9999999&et=9999999&cn=9999999&newflg=0&km=1&sc=14132&bs=040&pc=100"
 res = requests.get(url)
@@ -61,3 +62,5 @@ for i in tqdm(house_list):
     src="https://img01.suumo.com/front/gazo/fr/bukken/"+i["bcid"][-3:]+"/"+i["bcid"]+"/"+i["bcid"]+"_co.jpg"#ダブル掲載がある場合は、BCIDを流用している場合があるため、取得できないことがある。
     #print(src)
     download_file(src, "./download/"+i["bcid"]+".jpg")
+    if hash.hash_generator("./download/"+i["bcid"]+".jpg")=="021878b987886333148ff95af6d9101fc8b82a6d836e7b392453494f5a1241f5":
+        pass#画像が取得されない場合の処理を書く

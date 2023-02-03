@@ -6,13 +6,6 @@ import textwrap
 import resize
 from tqdm import tqdm
 
-
-
-json_open = open('./data.json', 'r')
-json_load=json.load(json_open)
-bc_lists=json_load
-
-
 def get_concat_h_blank(im1,bc_list, color=(255, 255, 255)):
     dst = Image.new('RGB', (1980, 1080), color)
 
@@ -68,11 +61,14 @@ def get_concat_h_blank(im1,bc_list, color=(255, 255, 255)):
     #dst.save("./debug/"+bc_list["bcid"]+"_dst.jpg")
     return dst
 
-def get_concat_v_blank(im1, im2, color=(0, 0, 0)):
-    dst = Image.new('RGB', (max(im1.width, im2.width), im1.height + im2.height), color)
-    dst.paste(im1, (0, 0))
-    dst.paste(im2, (0, im1.height))
-    return dst
+#def get_concat_v_blank(im1, im2, color=(0, 0, 0)):
+#    dst = Image.new('RGB', (max(im1.width, im2.width), im1.height + im2.height), color)
+#    dst.paste(im1, (0, 0))
+#    dst.paste(im2, (0, im1.height))
+#    return dst
+json_open = open('./data.json', 'r')
+json_load=json.load(json_open)
+bc_lists=json_load
 for bc_list in tqdm(bc_lists, leave=False):
     play_path = "./download/"+bc_list["bcid"]+".jpg"
     im1 = Image.open(play_path).copy()
